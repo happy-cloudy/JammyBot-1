@@ -5,7 +5,7 @@ import random
 from datetime import datetime
 import os
 
-system("title "+"행복봇")
+system("title "+"재미봇")
 
 TOKEN = os.environ["BOT_TOKEN"]
 
@@ -23,7 +23,7 @@ async def on_message(message):
         await client.send_message(message.channel, msg)
     
     if message.content.startswith('!버전'):
-        msg = '재미봇 버전: 1.0.2a'.format(message)
+        msg = '재미봇 버전: 1.0.2'.format(message)
         await client.send_message(message.channel, embed=discord.Embed(title = msg,colour = 0x2EFEF7))
         
     if message.content.startswith('!명령어'):
@@ -115,9 +115,7 @@ async def on_message(message):
 
 
     if message.content.startswith('!시간'):
-        f = open("C:/Users/user/Desktop/Discord_Bot/Mode/mode.txt", 'r')
-        mode = f.read()
-        if(mode == "모드번호1"):
+        if(message.content == "!시간 1"):
             now = datetime.now()
             hr = "``" + str(now.hour) + "`` : "
             mi = "``" + str(now.minute) + "`` : "
@@ -131,7 +129,7 @@ async def on_message(message):
             await client.send_message(message.channel, oj + hr + mi+ sc)
 
 
-        if(mode == "모드번호2"):
+        if(message.content == "!시간 2"):
             now = datetime.now()
             hr = str(now.hour) + "시 "
             mi = str(now.minute) + "분 "
@@ -144,9 +142,6 @@ async def on_message(message):
                 oj = "오전 "
             mtl = "현재 시간은 " + oj + hr + mi + sc + " 입니다."
             await client.send_message(message.channel, embed=discord.Embed(title = mtl, colour = 0x2EFEF7))
-
-
-        f.close()
 
 
 @client.event
